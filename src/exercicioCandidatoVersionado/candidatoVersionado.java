@@ -9,7 +9,7 @@ public class candidatoVersionado {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		int escolaridade, expProfissional, pontosEscola, pontosExp;
+		int escolaridade, expProfissional, pontosEscola, pontosExp, cargo, assistente=0, gerente=0, analista=0;
 		char disponibilidade, habilitacao;
 		
 		// Leitura da escolaridade
@@ -61,7 +61,28 @@ public class candidatoVersionado {
 			pontosExp = 40;
 		}
 		System.out.println("Pontos por experiência: " + pontosExp);	
-			
+		System.out.println();
+		System.out.println("Você está habilitado para o(s) seguinte(s) cargo(s):");
+		//Seleção dos cargos
+		
+		if (escolaridade >= 2 && habilitacao == 'S') {
+			assistente = 1;
+			System.out.println("ASSISTENTE");	
+		}
+		if (escolaridade >= 3 && expProfissional > 2) {
+			gerente = 1;
+			System.out.println("GERENTE");	
+		}
+		if (escolaridade >= 3 && expProfissional > 5 && disponibilidade == 'S') {
+			analista = 1;
+			System.out.println("ANALISTA");	
+		}
+		
+		cargo = assistente + gerente + analista;
+		if (cargo == 0){
+			System.out.println("Infelizmente seu perfil não atende a empresa");
+		}
+		
 		sc.close();	
 		
 	}
